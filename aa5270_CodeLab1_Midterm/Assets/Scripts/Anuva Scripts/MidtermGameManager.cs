@@ -15,7 +15,7 @@ public class MidtermGameManager : MonoBehaviour {
 	public const int HEALTH_MAX = 100;
 
 	//public var damageAmt
-	public int damageAmt = 7;
+	public int damageAmt = 10;
 
 	public Text healthText;
 
@@ -28,24 +28,28 @@ public class MidtermGameManager : MonoBehaviour {
 	//Properties let you wrap get/set
 	//of a var with a function
 	public int Health{
-		get{
+		get
+		{
 			return health;
 		}
 
-		set{
+		set
+		{
 			//set the var "health" to whatever
 			//"Health" was set to
 			health = value;
 
 			//Make sure health is never more
 			//than HEALTH_MAX
-			if(health > HEALTH_MAX){
+			if(health > HEALTH_MAX)
+			{
 				health = HEALTH_MAX;
 			}
 
 			//Make sure health is never less
 			//than HEALTH_MIN
-			if(health < HEALTH_MIN){
+			if(health < HEALTH_MIN)
+			{
 				health = HEALTH_MIN;
 			}
 		}
@@ -56,7 +60,8 @@ public class MidtermGameManager : MonoBehaviour {
 	public KeyCode damageKey;
 
 // Use this for initialization
-	void Start () {
+	void Start () 
+	{
 
 		if(instance == null)
 		{
@@ -75,7 +80,8 @@ public class MidtermGameManager : MonoBehaviour {
 	}
 
 // Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 		healthText.text = health.ToString ();
 	//if the damageKey was pressed
@@ -85,5 +91,9 @@ public class MidtermGameManager : MonoBehaviour {
 			//Print out the Health after damage was assigned
 			print(name + " Current Health: " + health);
 		}
+	
+
 	}
+
+
 }

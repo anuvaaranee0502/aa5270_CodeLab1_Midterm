@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControlScript : MonoBehaviour {
+public class PlayerControlScript : MonoBehaviour 
+{
 
 	//Variable for controlling speed
 	//it is public, so it can been seen outside
@@ -15,12 +16,17 @@ public class PlayerControlScript : MonoBehaviour {
 	public KeyCode leftKey = KeyCode.A;
 	public KeyCode rightKey = KeyCode.D;
 
+
+	//public Vector3 respawn;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		//respawn = transform.position;
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		//Call the move function with a direction and a key
 		Move(Vector3.up, upKey);
 		Move(Vector3.down, downKey);
@@ -29,12 +35,25 @@ public class PlayerControlScript : MonoBehaviour {
 	}
 
 	//function for moving the player
-	void Move(Vector3 dir, KeyCode key){
+	void Move(Vector3 dir, KeyCode key)
+	{
 		//if the key passed to this function was pressed
-		if(Input.GetKey(key)){
+		if(Input.GetKey(key))
+		{
 			//than translate the player in the direction passed to this function
 			//multiplied by the speed and the deltaTime
 			transform.Translate(dir * speed * Time.deltaTime);
 		}
 	}
+
+	void OnTriggerEnter (Collider col)
+	{
+		if (col.tag == "Sphere")
+		{
+			Application.LoadLevel (Application.loadedLevel);
+		}
+			
+
+	}
+
 }
