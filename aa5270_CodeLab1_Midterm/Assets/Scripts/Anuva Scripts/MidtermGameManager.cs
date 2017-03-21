@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MidtermGameManager : MonoBehaviour {
 
 	public static MidtermGameManager instance;
+
 
 	//Create a public const for HEALTH_MIN
 	//consts are like variable, but they can't 
@@ -16,6 +18,24 @@ public class MidtermGameManager : MonoBehaviour {
 
 	//public var damageAmt
 	public int damageAmt = 10;
+
+	public int numberOfLevels; 
+
+	private static int levelNum;
+
+	public int LevelNum{
+		get{
+			return levelNum;
+		}
+		set{
+			levelNum = value;
+
+			if (levelNum > numberOfLevels) {
+				levelNum = 0;
+			}
+		}
+		
+	}
 
 	public Text healthText;
 
@@ -60,8 +80,9 @@ public class MidtermGameManager : MonoBehaviour {
 	public KeyCode damageKey;
 
 // Use this for initialization
-	void Start () 
+	void Awake () 
 	{
+//		LevelNum = 0;
 
 		if(instance == null)
 		{
@@ -77,11 +98,20 @@ public class MidtermGameManager : MonoBehaviour {
 
 	//start with max health
 		Health = HEALTH_MAX;
+
+//		ll = levelLoader.GetComponent<LevelLoader> ();
+		GameObject planes = Instantiate (Resources.Load ("Prefab/Planes")) as GameObject;
 	}
 
 // Update is called once per frame
 	void Update () 
 	{
+		print (levelNum);
+		if (health <= 0){
+
+			LevelNum++;
+			ReloadScene ();
+		}
 
 		healthText.text = health.ToString ();
 	//if the damageKey was pressed
@@ -89,10 +119,19 @@ public class MidtermGameManager : MonoBehaviour {
 			//damage the ship by using the property "Health"
 			Health -= damageAmt;
 			//Print out the Health after damage was assigned
-			print(name + " Current Health: " + health);
+//			print(name + " Current Health: " + health);
+		}
+
+		if (Input.GetKeyDown(KeyCode.B)){
+			LevelNum++;
 		}
 	
 
+	}
+
+	public void ReloadScene(){
+	SceneManager.LoadScene ("aa5270_CodeLab1_Midterm");
+		
 	}
 
 

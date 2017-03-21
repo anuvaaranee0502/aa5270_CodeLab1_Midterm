@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SphereManager : MonoBehaviour 
 {
 
 	public Material[] material;
 	Renderer rend;
+
+	string playerThatDied;
 
 
 
@@ -55,7 +58,19 @@ public class SphereManager : MonoBehaviour
 
 			else if (rend.sharedMaterial == material [2])
 			{
+				if (col.gameObject.name == "Player1"){
+					playerThatDied = "Player1";
+				}
+
+				if (col.gameObject.name == "Player2"){
+					playerThatDied = "Player2";
+				}
+
 				Destroy (col.gameObject);
+
+				Invoke ("RespawnPlayer", 2);
+//				SceneManager.LoadScene ("aa5270_CodeLab1_Midterm1");
+//				MidtermGameManager.instance.ReloadScene();
 			}
 		
 		
@@ -69,7 +84,20 @@ public class SphereManager : MonoBehaviour
 		}
 
 
+
 			
+		
+	}
+
+	public void RespawnPlayer(){
+		if (playerThatDied == "Player1"){
+			GameObject player1 = Instantiate (Resources.Load ("Prefab/Player1")) as GameObject;
+		}
+
+		if (playerThatDied == "Player2"){
+			GameObject player1 = Instantiate (Resources.Load ("Prefab/Player2")) as GameObject;
+		}
+
 		
 	}
 }

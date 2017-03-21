@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerControlScript : MonoBehaviour 
 {
@@ -45,15 +47,6 @@ public class PlayerControlScript : MonoBehaviour
 			transform.Translate(dir * speed * Time.deltaTime);
 		}
 	}
-
-	void OnTriggerEnter (Collider col)
-	{
-		if (col.tag == "Sphere")
-		{
-			Application.LoadLevel (Application.loadedLevel);
-		}
-			
-
-	}
+		
 
 }
