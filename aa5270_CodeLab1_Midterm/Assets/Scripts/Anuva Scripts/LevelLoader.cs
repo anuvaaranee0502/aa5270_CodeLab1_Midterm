@@ -67,6 +67,8 @@ public class LevelLoader : MonoBehaviour {
 						xPos + offsetX, 
 						yPos + offsetY, 
 						0);
+					cube.transform.localScale = new Vector3 (1.2f, 0.5f, 1f);
+
 				} 
 /*				if(line[xPos] == 'P'){ // we see a 'P'
 					//Move the player to that location

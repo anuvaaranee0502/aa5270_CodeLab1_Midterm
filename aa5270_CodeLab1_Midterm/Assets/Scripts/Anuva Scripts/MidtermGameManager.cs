@@ -100,7 +100,7 @@ public class MidtermGameManager : MonoBehaviour {
 		Health = HEALTH_MAX;
 
 //		ll = levelLoader.GetComponent<LevelLoader> ();
-		GameObject planes = Instantiate (Resources.Load ("Prefab/Planes")) as GameObject;
+		GameObject walls = Instantiate (Resources.Load ("Prefab/Walls")) as GameObject;
 	}
 
 // Update is called once per frame
